@@ -1,7 +1,11 @@
+import subprocess
 import streamlit as st
 import numpy as np
 import pandas as pd
 import tensorflow as tf
+
+# Install TensorFlow
+subprocess.call(['pip', 'install', 'tensorflow'])
 
 # Load the trained model
 model = tf.keras.models.load_model('real_estate_price_prediction_model.h5')
