@@ -3,4 +3,4 @@ pandas
 streamlit
 tensorflow
 numpy
-pip install -r requirements.txt
+
