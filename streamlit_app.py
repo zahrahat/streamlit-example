@@ -1,7 +1,7 @@
+import subprocess
 # Install TensorFlow and other dependencies
 subprocess.run(['pip', 'install', 'tensorflow', 'numpy'])
 
-import subprocess
 import streamlit as st
 import numpy as np
 import pandas as pd
