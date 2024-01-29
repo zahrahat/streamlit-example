@@ -1,12 +1,14 @@
-
-
 import streamlit as st
 import numpy as np
 import pandas as pd
 import tensorflow as tf
 
 # Load the trained model
-model = tf.keras.models.load_model('real_estate_price_prediction_model.h5')
+@st.cache(allow_output_mutation=True)
+def load_model():
+    return tf.keras.models.load_model('real_estate_price_prediction_model.h5')
+
+model = load_model()
 
 # Define the user interface
 st.title('Real Estate Price Prediction')
@@ -21,10 +23,16 @@ etage = st.number_input('Floor', min_value=0, value=1)
 
 # Button to trigger prediction
 if st.button('Predict Price'):
-    # Preprocess input data
-    input_data = np.array([[surface, pieces, sdb, chambres, age, etage]])
-    # Scale input data (if necessary)
-    # Make prediction
-    prediction = model.predict(input_data)[0][0]
-    # Display prediction
-    st.write(f'Predicted Price: {prediction}')
+    try:
+        # Preprocess input data
+        input_data = np.array([[surface, pieces, sdb, chambres, age, etage]])
+        st.write("Input Data:", input_data)
+
+        # Make prediction
+        prediction = model.predict(input_data)
+        st.write("Raw Prediction:", prediction)
+
+        # Display prediction
+        st.write(f'Predicted Price: {prediction[0][0]}')
+    except Exception as e:
+        st.error(f"Error during prediction: {e}")
