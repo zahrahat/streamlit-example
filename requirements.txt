@@ -1,6 +1,7 @@
 altair
 pandas
 streamlit
-tensorflow
-numpy
+tensorflow==2.5.0
+numpy==1.19.5
+
 
