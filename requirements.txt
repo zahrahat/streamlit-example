@@ -1,10 +1,6 @@
 altair
 pandas
 streamlit
-tensorflow==2.5.0
-numpy==1.19.5
-matplotlib
-seaborn
-geopy
-folium
-scikit-learn
+tensorflow
+numpy
+
