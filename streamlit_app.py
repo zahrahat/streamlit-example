@@ -4,11 +4,7 @@ import pandas as pd
 import tensorflow as tf
 
 # Load the trained model
-@st.cache(allow_output_mutation=True)
-def load_model():
-    return tf.keras.models.load_model('real_estate_price_prediction_model.h5')
-
-model = load_model()
+model = tf.keras.models.load_model('real_estate_price_prediction_model.h5')
 
 # Define the user interface
 st.title('Real Estate Price Prediction')
@@ -23,13 +19,10 @@ etage = st.number_input('Floor', min_value=0, value=1)
 
 # Button to trigger prediction
 if st.button('Predict Price'):
-    try:
-        # Preprocess input data
-        input_data = np.array([[surface, pieces, sdb, chambres, age, etage]])
-        st.write("Input Data:", pd.DataFrame(input_data, columns=['Surface Area', 'Rooms', 'Bathrooms', 'Bedrooms', 'Age', 'Floor']))
-
-        # Make prediction
-        prediction = model.predict(input_data)
-        st.write(f'Predicted Price: {prediction[0][0]}')
-    except Exception as e:
-        st.error(f"Error during prediction: {e}")
+    # Preprocess input data
+    input_data = np.array([[surface, pieces, sdb, chambres, age, etage]])
+    # Scale input data (if necessary)
+    # Make prediction
+    prediction = model.predict(input_data)[0][0]
+    # Display prediction
+    st.write(f'Predicted Price: {prediction}') 
