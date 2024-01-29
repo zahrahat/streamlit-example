@@ -26,13 +26,10 @@ if st.button('Predict Price'):
     try:
         # Preprocess input data
         input_data = np.array([[surface, pieces, sdb, chambres, age, etage]])
-        st.write("Input Data:", input_data)
+        st.write("Input Data:", pd.DataFrame(input_data, columns=['Surface Area', 'Rooms', 'Bathrooms', 'Bedrooms', 'Age', 'Floor']))
 
         # Make prediction
         prediction = model.predict(input_data)
-        st.write("Raw Prediction:", prediction)
-
-        # Display prediction
         st.write(f'Predicted Price: {prediction[0][0]}')
     except Exception as e:
         st.error(f"Error during prediction: {e}")
